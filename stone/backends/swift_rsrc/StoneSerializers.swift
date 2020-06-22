@@ -106,11 +106,11 @@ open class VoidSerializer: JSONSerializer {
 }
 
 
-open class ArraySerializer<T: JSONSerializer>: JSONSerializer {
+open public class ArraySerializer<T: JSONSerializer>: JSONSerializer {
 
     var elementSerializer: T
 
-    init(_ elementSerializer: T) {
+    public init(_ elementSerializer: T) {
         self.elementSerializer = elementSerializer
     }
 
@@ -387,19 +387,19 @@ open class NullableSerializer<T: JSONSerializer>: JSONSerializer {
     }
 }
 
-struct Serialization {
-    static var _StringSerializer = StringSerializer()
-    static var _BoolSerializer = BoolSerializer()
-    static var _UInt64Serializer = UInt64Serializer()
-    static var _UInt32Serializer = UInt32Serializer()
-    static var _Int64Serializer = Int64Serializer()
-    static var _Int32Serializer = Int32Serializer()
+public struct Serialization {
+    public static var _StringSerializer = StringSerializer()
+    public static var _BoolSerializer = BoolSerializer()
+    public static var _UInt64Serializer = UInt64Serializer()
+    public static var _UInt32Serializer = UInt32Serializer()
+    public static var _Int64Serializer = Int64Serializer()
+    public static var _Int32Serializer = Int32Serializer()
 
-    static var _VoidSerializer = VoidSerializer()
-    static var _NSDataSerializer = NSDataSerializer()
-    static var _DoubleSerializer = DoubleSerializer()
+    public static var _VoidSerializer = VoidSerializer()
+    public static var _NSDataSerializer = NSDataSerializer()
+    public static var _DoubleSerializer = DoubleSerializer()
 
-    static func getFields(_ json: JSON) -> [String: JSON] {
+    public static func getFields(_ json: JSON) -> [String: JSON] {
         switch json {
             case .dictionary(let dict):
                 return dict
@@ -408,7 +408,7 @@ struct Serialization {
         }
     }
 
-    static func getTag(_ d: [String: JSON]) -> String {
+    public static func getTag(_ d: [String: JSON]) -> String {
         return _StringSerializer.deserialize(d[".tag"]!)
     }
 
